@@ -19,7 +19,9 @@ io.on('connection', function(socket) {
         console.log('Client disconnected');
     });
 
-    
+    socket.emit('newMessage', {from: 'Admin', text : 'Welcome new user', createdAt: new Date().getDate()});
+
+    socket.broadcast.emit('newMessage', { from: 'Admin', text:'New user joined', createdAt: new Date().getDate()})
 
     socket.on('createMessage', (newMessage) =>{
         console.log('New Message');
